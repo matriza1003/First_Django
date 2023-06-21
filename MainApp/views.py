@@ -17,9 +17,14 @@ item = [
 ]
 
 def home(request):
-    text = """<h1>"Изучаем django"</h1>
-            <strong>Автор</strong>: <i>Правка номер один Жилкин А.А </i>"""
-    return HttpResponse(text)
+    context = {
+        "name":"Artem Zhilkin",
+        "email":"matriza1996@GMAIL.COM"
+    }
+    return render(request,"index.html",context)
+    #"""text = """<h1>"Изучаем django"</h1>
+            #<strong>Автор</strong>: <i>Правка номер один Жилкин А.А </i>"""
+    #return HttpResponse(text)
 def about(request):
     text = f"""<h1>"Изучаем django"</h1> 
                 <div>"Имя:{first_name} "<div>
@@ -29,8 +34,11 @@ def about(request):
                 <div>"Email:{Email}"</div>"""
     return HttpResponse(text)
 def startItems(request):
-    x = []
-    text1 = []
+    context = {
+        "item":item
+    }
+    return render(request,"items_list.html",context)
+    """text1 = []
     for i in item:
         GetIdForUrl = i.get("id")
         text1.append("<div>")
@@ -38,8 +46,9 @@ def startItems(request):
         text1.append(i)
         text1.append("</a>")
         text1.append("</div>")
-    return HttpResponse(text1)
+    return HttpResponse(text1)"""
 def get_items(request,value):
+    """Функция получения элементов"""
     counter = 0
     for i in item:
         if i.get("id") == value:
