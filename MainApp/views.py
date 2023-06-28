@@ -31,7 +31,9 @@ def about(request):
                 <div>"Отчество: {Patronymic}"</div>
                 <div>"Фамилия: {last_name}"</div>
                 <div>"Телефон:{Phone}"</div>
-                <div>"Email:{Email}"</div>"""
+                <div>"Email:{Email}"</div>
+                <div><a href="http://127.0.0.1:8000">ДОМОЙ</a> <a href="http://127.0.0.1:8000/items">К списку товаров</a>
+                <a href="http://127.0.0.1:8000/about">АБАУТ)</a></div>"""
     return HttpResponse(text)
 def startItems(request):
     context = {
@@ -49,16 +51,22 @@ def startItems(request):
     return HttpResponse(text1)"""
 def get_items(request,value):
     """Функция получения элементов"""
-    counter = 0
     for i in item:
-        if i.get("id") == value:
-            idobject,nameobject,quantity = i.values()
-            text = f"<div>Айди Обьекта:{idobject}</div><div>Имя товара:{nameobject}</div><div>Количество на складе:{quantity}</div><a href='http://127.0.0.1:8000/items/'>Назад к списку товаров</a>" 
-            break
+        if i["id"] == value:
+            context = {
+                "item":i
+            }
+            return render(request,"itemsid.html",context)
+    #counter = 0
+    #for i in item:
+        #if i.get("id") == value:
+            #idobject,nameobject,quantity = i.values()
+            #text = f"<div>Айди Обьекта:{idobject}</div><div>Имя товара:{nameobject}</div><div>Количество на складе:{quantity}</div><a href='http://127.0.0.1:8000/items/'>Назад к списку товаров</a>" 
+            #break
         #elif counter+1 == len(item):
             #text = f"""Предмета с id:{value} нет в списке"""
         #counter += 1
-        else:
-            return HttpResponseNotFound(f"item:{value} not found")
+        #else:
+            #return HttpResponseNotFound(f"item:{value} not found")
 
-    return HttpResponse(text)
+    #return HttpResponse(text)

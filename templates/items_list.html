@@ -7,10 +7,15 @@
     <title>Список товаров</title>
 </head>
 <body>
+    <header>
+        <a href="http://127.0.0.1:8000">ДОМОЙ------></a> 
+        <a href="http://127.0.0.1:8000/items">К списку товаров</a>
+        <a href="http://127.0.0.1:8000/about">АБАУТ)</a></div>
+    </header>
     <h2>Список товаров</h2>
     <ol>
         {% for it in item %}
-            <li>{{it.name}} </li> 
+            <li><a href=http://127.0.0.1:8000/items/{{it.id}}>{{it.name}} </a></li> 
         {% endfor %}
     </ol>
 </body>

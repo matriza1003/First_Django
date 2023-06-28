@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="http://127.0.0.1:8000">ДОМОЙ-------></a> 
+        <a href="http://127.0.0.1:8000/items">К списку товаров</a>
+        <a href="http://127.0.0.1:8000/about">АБАУТ)</a>
+    </header>
+    {% if item.quantity %}
+    <h1>Товар :{{item.name}}</h1>
+    <h2>В количестве: {{item.quantity}}</h2><br>
+    <a href=http://127.0.0.1:8000/items>К списку всех товаров</a>
+    {% else %}
+    <h1>Товар :{{item.name}} Временно отсутсвует</h1>
+    {% endif %}
+</body>
+</html>
