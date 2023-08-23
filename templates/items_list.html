@@ -1,22 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список товаров</title>
-</head>
-<body>
-    <header>
-        <a href="http://127.0.0.1:8000">ДОМОЙ------></a> 
-        <a href="http://127.0.0.1:8000/items">К списку товаров</a>
-        <a href="http://127.0.0.1:8000/about">АБАУТ)</a></div>
-    </header>
+
+{% extends 'base.html'%}
+{% block style %}
+<style>
+    li {
+        display: inline-block;
+        border: 1px solid blue;
+        padding: 10px 20px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #2aaa9f;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    {%include "inc-menu.html"%}
     <h2>Список товаров</h2>
-    <ol>
         {% for it in item %}
-            <li><a href=http://127.0.0.1:8000/items/{{it.id}}>{{it.name}} </a></li> 
+        <li><a href="{% url 'item_detail' it.id %}">
+            <figure class="stock">
+            <img src=templates/images/{{it.id}}.jpeg width="150" height="150" alt="альтернативный текст для {{it.id}}">
+            <figcaption>{{it.name}}</figcaption>
+            </figure>
+        </a></li>
         {% endfor %}
-    </ol>
-</body>
-</html>
+{% endblock %}

@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Page</title>
-</head>
-<body>
-    <header><a href="items">Перейти к списку товаров</a>
-        <a href="http://127.0.0.1:8000">ДОМОЙ</a>
-        <a href="http://127.0.0.1:8000/about">АБАУТ)</a></div>
-
-    </header>
-    <h1>Приветствую  </h1>
-    это главная страница сайт </br>
+{% extends 'base.html' %}
+{% block content %}
+    {%include "inc-menu.html"%}
+    <h1 class="demo">Приветствую  </h1>
     <i>Страница пока в разработке </i><br>
-    Меня зовут : {{ name }} <br>
+    <span style='color:blue'>Меня зовут : {{ name }} </span><br>
     Мой имейл для связи : {{email}}<br>
-
-</body>
-</html>
+{% endblock %}

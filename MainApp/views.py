@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from MainApp.models import Item
+from django.core.exceptions import ObjectDoesNotExist
+from FirstDjango import settings
 
 first_name = "Artem" 
 last_name = "Zhilkin"
@@ -8,13 +11,13 @@ Patronymic = "Aleksandrovich"
 Phone = "8 978 577 51 55"
 
 
-item = [
-   {"id": 1, "name": "Кроссовки abibas" ,"quantity":5},
-   {"id": 2, "name": "Куртка кожаная" ,"quantity":2},
-   {"id": 5, "name": "Coca-cola 1 литр" ,"quantity":12},
-   {"id": 7, "name": "Картофель фри" ,"quantity":0},
-   {"id": 8, "name": "Кепка" ,"quantity":124},
-]
+# item = [
+#    {"id": 1, "name": "Кроссовки abibas" ,"quantity":5},
+#    {"id": 2, "name": "Куртка кожаная" ,"quantity":2},
+#    {"id": 5, "name": "Coca-cola 1 литр" ,"quantity":12},
+#    {"id": 7, "name": "Картофель фри" ,"quantity":0},
+#    {"id": 8, "name": "Кепка" ,"quantity":124},
+# ]
 
 def home(request):
     context = {
@@ -36,9 +39,10 @@ def about(request):
                 <a href="http://127.0.0.1:8000/about">АБАУТ)</a></div>"""
     return HttpResponse(text)
 def startItems(request):
+    item = Item.objects.all()
     context = {
-        "item":item
-    }
+         "item":item
+     }
     return render(request,"items_list.html",context)
     """text1 = []
     for i in item:
@@ -51,12 +55,21 @@ def startItems(request):
     return HttpResponse(text1)"""
 def get_items(request,value):
     """Функция получения элементов"""
-    for i in item:
-        if i["id"] == value:
-            context = {
-                "item":i
-            }
-            return render(request,"itemsid.html",context)
+    try:
+        item = Item.objects.get(id = value)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound(f"item:{value} not found")
+    context = {
+        "item":item
+    }
+    
+    return render(request,"itemsid.html",context)
+    # for i in item:
+    #     if i["id"] == value:
+    #         context = {
+    #             "item":i
+    #         }
+    #         return render(request,"itemsid.html",context)
     #counter = 0
     #for i in item:
         #if i.get("id") == value:

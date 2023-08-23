@@ -7,15 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <a href="http://127.0.0.1:8000">ДОМОЙ-------></a> 
-        <a href="http://127.0.0.1:8000/items">К списку товаров</a>
-        <a href="http://127.0.0.1:8000/about">АБАУТ)</a>
-    </header>
-    {% if item.quantity %}
-    <h1>Товар :{{item.name}}</h1>
-    <h2>В количестве: {{item.quantity}}</h2><br>
-    <a href=http://127.0.0.1:8000/items>К списку всех товаров</a>
+    {%include "inc-menu.html"%}
+    {% if item.count %}
+    <h1>Товар :{{item.name}} {{item.brand}}</h1>
+    <h2>В количестве: {{item.count}}</h2><br>
     {% else %}
     <h1>Товар :{{item.name}} Временно отсутсвует</h1>
     {% endif %}
