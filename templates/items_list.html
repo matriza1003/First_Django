@@ -1,5 +1,6 @@
 
 {% extends 'base.html'%}
+{% load static %}
 {% block style %}
 <style>
     li {
@@ -20,7 +21,7 @@
         {% for it in item %}
         <li><a href="{% url 'item_detail' it.id %}">
             <figure class="stock">
-            <img src=templates/images/{{it.id}}.jpeg width="150" height="150" alt="альтернативный текст для {{it.id}}">
+            <img src="{% static it.id .jpeg %}" width="150" height="150" alt="альтернативный текст для {{it.id}}">
             <figcaption>{{it.name}}</figcaption>
             </figure>
         </a></li>

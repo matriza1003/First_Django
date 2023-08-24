@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from MainApp.models import Item
 from django.core.exceptions import ObjectDoesNotExist
 from FirstDjango import settings
+from MainApp.models import Image
 
 first_name = "Artem" 
 last_name = "Zhilkin"
@@ -59,8 +60,13 @@ def get_items(request,value):
         item = Item.objects.get(id = value)
     except ObjectDoesNotExist:
         return HttpResponseNotFound(f"item:{value} not found")
+    """try:
+        image = Image.objects.get(id = value)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound(f"item:{value} Произошло очко с картинкой")"""
     context = {
-        "item":item
+        "item":item,
+        "disc":item.description
     }
     
     return render(request,"itemsid.html",context)

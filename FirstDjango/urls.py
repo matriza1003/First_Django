@@ -9,6 +9,6 @@ urlpatterns = [
     path('about',views.about, name= "about"),
     path("items/",views.startItems,name = "item_list"),
     path("items/<int:value>/",views.get_items,name = "item_detail")
-]
+]    + static(settings.STATIC_URL, documet_root=settings.STATIC_ROOT)
 
 
